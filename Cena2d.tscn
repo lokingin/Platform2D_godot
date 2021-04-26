@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://player.tscn" type="PackedScene" id=1]
+
+[node name="Cena2d" type="Node2D"]
+position = Vector2( 0.699234, 1.34883 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 0.699234, 281.349 )
+color = Color( 0.294118, 0.376471, 0.415686, 1 )
+polygon = PoolVector2Array( -1.39847, -2.69765, 62.6015, 61.3023, 86.6015, 125.302, 118.602, 253.302, 382.602, 253.302, 446.602, 125.302, 446.602, 317.302, -1.39847, 317.302, -1.39847, 317.302 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2( 0, 280 )
+color = Color( 0.294118, 0.376471, 0.415686, 1 )
+polygon = PoolVector2Array( 447.301, 126.651, 767.301, 126.651, 783.301, 158.651, 823.301, 214.651, 863.301, 238.651, 911.301, 254.651, 1151.3, 254.651, 1151.3, 318.651, 447.301, 318.651 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+color = Color( 0.294118, 0.376471, 0.415686, 1 )
+polygon = PoolVector2Array( -0.699234, 278.651, -0.699234, 126.651, 31.3008, 86.6512, 79.3008, 62.6512, 151.301, 126.651, 239.301, 206.651, 447.301, 190.651, 831.301, 190.651, 991.301, 190.651, 1007.3, 294.651, 1023.3, 534.651, 1151.3, 534.651, 1151.3, -1.34883, -80.6992, -1.34883 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -0.699234, 278.651, -80.6992, -1.34883, 1151.3, -9.34883, 1151.3, 598.651, 1023.3, 534.651, 1007.3, 286.651, 991.301, 190.651, 439.301, 190.651, 239.301, 206.651, 79.3008, 62.6512, 31.3008, 86.6512, -0.699234, 126.651 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -0.699234, 278.651, 63.3008, 342.651, 87.3008, 406.651, 119.301, 534.651, 383.301, 534.651, 447.301, 406.651, 767.301, 406.651, 775.301, 422.651, 783.301, 438.651, 823.301, 494.651, 863.301, 518.651, 911.301, 534.651, 1023.3, 534.651, 1151.3, 598.651, -0.699234, 598.651 )
+
+[node name="Camera2D" type="Camera2D" parent="StaticBody2D"]
+position = Vector2( 511.301, 294.651 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 231.301, 382.651 )
