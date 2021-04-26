@@ -7,8 +7,8 @@
 
 extends KinematicBody2D
 
-var VEL = 400
-var MAX_VEL = 457 #todo
+export var VEL = 75
+export var MAX_VEL = 125
 
 var MAX_FLOOR_ANGLE = 45.0
 
@@ -28,18 +28,21 @@ func _physics_process(delta):
 	if !Input.is_action_pressed("left") and !Input.is_action_pressed("right"):
 		#these give a smooth transition when releasing the button
 		if velocity.x > 0:
-			velocity.x -= 1.0
+			velocity.x -= 2.5
 		if velocity.x < 0:
-			velocity.x += 1.0
+			velocity.x += 2.5
 	
 	#the usual map input config with the direction values
-	if Input.is_action_pressed("left"):
+	#giving a simple velocity condition to halt the player so he stays near the
+	#maximum velocity
+	if Input.is_action_pressed("left") and velocity.x > -MAX_VEL:
 		velocity.x -= 1.0
-	if Input.is_action_pressed("right"):
+	if Input.is_action_pressed("right") and velocity.x < MAX_VEL:
 		velocity.x += 1.0
 	
 	#normalize and multiplies by VEL var.
 	velocity.normalized().x = velocity.x * VEL
+
 	
 	#the jump action, always make sure you have a raycast to detect ground
 	#collision.
@@ -48,12 +51,13 @@ func _physics_process(delta):
 			velocity.y = JUMP
 	
 	#gravity works better if is constantly aplying
-	velocity.y += GRAVITY
+	if !ground_detector.is_colliding():
+		velocity.y += GRAVITY
 	
 	#always make the velocity receive the move_and_slide with itself inside,
 	#it makes the transition more smooth since it needs to calculate itself
 	#every time.
-	velocity = move_and_slide_with_snap(velocity,Vector2(0,20),Vector2.DOWN,false,
-		MAX_FLOOR_ANGLE)
+	velocity = move_and_slide_with_snap(velocity,Vector2(0,2),Vector2.UP,true,
+		4, MAX_FLOOR_ANGLE)
 	
 	pass
